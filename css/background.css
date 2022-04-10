@@ -6,6 +6,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-image: url(../img/background_p0.png);
+    /*background-image: url(../img/background_p0.png);*/
+    background: cornsilk;
     transition: transform 1.5s,opacity 1s;
 }
