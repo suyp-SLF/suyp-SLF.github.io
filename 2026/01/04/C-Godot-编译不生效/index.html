@@ -4,17 +4,23 @@
   <meta charset="utf-8">
   
   
-  <title>Su Youpeng blogs</title>
+  <title>C# Godot 编译不生效 | Su Youpeng blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Su Youpeng blogs">
-<meta property="og:url" content="http://example.com/images/posts/jd-gui%EF%BC%881-4-version%EF%BC%89and-1-6-version-problem/%E7%94%A8%E6%88%B7%E8%AF%B7%E6%B1%82%E5%9C%A8%E6%96%87%E6%9C%AC%E4%B8%AD%E6%B7%BB%E5%8A%A0%E7%BA%A2%E8%89%B2%E5%AD%97%20-%20DeepSeek_files/saved_resource(1).html">
+  <meta name="description" content="2026&#x2F;01&#x2F;05 看一下现象 这是两个不一样的地方，重新编译不管用。现在只能把方法放进全局逻辑里面才会编译新的逻辑，并且删掉就会重新复现。另外C# 如果使用数组队列没有new的话，也不会提示报错，并且像我这样卡死。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# Godot 编译不生效">
+<meta property="og:url" content="http://example.com/2026/01/04/C-Godot-%E7%BC%96%E8%AF%91%E4%B8%8D%E7%94%9F%E6%95%88/index.html">
 <meta property="og:site_name" content="Su Youpeng blogs">
+<meta property="og:description" content="2026&#x2F;01&#x2F;05 看一下现象 这是两个不一样的地方，重新编译不管用。现在只能把方法放进全局逻辑里面才会编译新的逻辑，并且删掉就会重新复现。另外C# 如果使用数组队列没有new的话，也不会提示报错，并且像我这样卡死。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-09-08T21:30:47.290Z">
-<meta property="article:modified_time" content="2025-09-08T21:30:47.252Z">
+<meta property="og:image" content="http://example.com/images/posts/C-Godot-%E7%BC%96%E8%AF%91%E4%B8%8D%E7%94%9F%E6%95%88/1.png">
+<meta property="og:image" content="http://example.com/images/posts/C-Godot-%E7%BC%96%E8%AF%91%E4%B8%8D%E7%94%9F%E6%95%88/2.png">
+<meta property="article:published_time" content="2026-01-04T00:10:27.000Z">
+<meta property="article:modified_time" content="2026-01-04T00:19:11.210Z">
 <meta property="article:author" content="Su Youpeng">
+<meta property="article:tag" content="Godot">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/posts/C-Godot-%E7%BC%96%E8%AF%91%E4%B8%8D%E7%94%9F%E6%95%88/1.png">
   
     <link rel="alternate" href="/atom.xml" title="Su Youpeng blogs" type="application/atom+xml">
   
@@ -75,37 +81,57 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-C-Godot-编译不生效" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/images/posts/jd-gui%EF%BC%881-4-version%EF%BC%89and-1-6-version-problem/%E7%94%A8%E6%88%B7%E8%AF%B7%E6%B1%82%E5%9C%A8%E6%96%87%E6%9C%AC%E4%B8%AD%E6%B7%BB%E5%8A%A0%E7%BA%A2%E8%89%B2%E5%AD%97%20-%20DeepSeek_files/saved_resource(1).html" class="article-date">
-  <time class="dt-published" datetime="2025-09-08T21:30:47.290Z" itemprop="datePublished">2025-09-09</time>
+    <a href="/2026/01/04/C-Godot-%E7%BC%96%E8%AF%91%E4%B8%8D%E7%94%9F%E6%95%88/" class="article-date">
+  <time class="dt-published" datetime="2026-01-04T00:10:27.000Z" itemprop="datePublished">2026-01-04</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Game/">Game</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      C# Godot 编译不生效
+    </h1>
+  
+
+      </header>
+    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
-<!-- saved from url=(0011)about:blank -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-      <script type="text/javascript" charset="utf-8" src="https://js.intercomcdn.com/frame-modern.5a0cbb54.js"></script><script type="text/javascript" charset="utf-8" src="https://js.intercomcdn.com/vendor-modern.c5cb4173.js"></script></head>
-      <body>
-      
-    </body></html>
+        <h1 id="2026-01-05-看一下现象"><a href="#2026-01-05-看一下现象" class="headerlink" title="2026&#x2F;01&#x2F;05 看一下现象"></a>2026&#x2F;01&#x2F;05 看一下现象</h1><p><img src="/images/posts/C-Godot-%E7%BC%96%E8%AF%91%E4%B8%8D%E7%94%9F%E6%95%88/1.png" alt="Attack"><br><img src="/images/posts/C-Godot-%E7%BC%96%E8%AF%91%E4%B8%8D%E7%94%9F%E6%95%88/2.png" alt="Attack"></p>
+<h2 id="这是两个不一样的地方，重新编译不管用。现在只能把方法放进全局逻辑里面才会编译新的逻辑，并且删掉就会重新复现。"><a href="#这是两个不一样的地方，重新编译不管用。现在只能把方法放进全局逻辑里面才会编译新的逻辑，并且删掉就会重新复现。" class="headerlink" title="这是两个不一样的地方，重新编译不管用。现在只能把方法放进全局逻辑里面才会编译新的逻辑，并且删掉就会重新复现。"></a>这是两个不一样的地方，重新编译不管用。现在只能把方法放进全局逻辑里面才会编译新的逻辑，并且删掉就会重新复现。</h2><h2 id="另外C-如果使用数组队列没有new的话，也不会提示报错，并且像我这样卡死。"><a href="#另外C-如果使用数组队列没有new的话，也不会提示报错，并且像我这样卡死。" class="headerlink" title="另外C# 如果使用数组队列没有new的话，也不会提示报错，并且像我这样卡死。"></a>另外C# 如果使用数组队列没有new的话，也不会提示报错，并且像我这样卡死。</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/images/posts/jd-gui%EF%BC%881-4-version%EF%BC%89and-1-6-version-problem/%E7%94%A8%E6%88%B7%E8%AF%B7%E6%B1%82%E5%9C%A8%E6%96%87%E6%9C%AC%E4%B8%AD%E6%B7%BB%E5%8A%A0%E7%BA%A2%E8%89%B2%E5%AD%97%20-%20DeepSeek_files/saved_resource(1).html" data-id="cmjyzi9ba0002836u9g8q7btw" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/01/04/C-Godot-%E7%BC%96%E8%AF%91%E4%B8%8D%E7%94%9F%E6%95%88/" data-id="cmjyzi9bb0003836u8y8c4qd2" data-title="C# Godot 编译不生效" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Godot/" rel="tag">Godot</a></li></ul>
+
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/2025/09/30/SQL-search-column/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SQL search column</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
