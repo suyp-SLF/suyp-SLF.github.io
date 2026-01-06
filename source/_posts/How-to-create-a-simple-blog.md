@@ -1,5 +1,5 @@
 ---
-title: How to create a simple blog
+title: How to create a simple blog（如何创建一个简单的个人博客）
 date: 2025-08-31 05:10:35
 tags:
   - Hexo
@@ -47,7 +47,11 @@ npm install hexo-deployer-git --save # install deployer plugin
 deploy:
   type: git
   repo: https://github.com/(githubname)/(reponame).github.io.git # reponame better same as githubname
-  branch: main
+  branch: main （tip in you can create a new branch to save html page, use main branch save code）
+  
+  这里以使用一个其他的分支(gh-pages)保存页面，主分支保存编写的文章，这样可以随时拉取
+  ![Image Alt Text](/images/posts/How-to-create-a-simple-blog/1.png)
+  还需要更改这里的配置
 # init 
 hexo clean
 hexo generate
