@@ -104,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/01/06/git-%E5%B8%B8%E5%BF%98%E5%91%BD%E4%BB%A4%E6%8C%87%E5%8D%97/" data-id="cmk2q80ba002ypx6ub5g15mpo" data-title="git 常忘命令指南" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/01/06/git-%E5%B8%B8%E5%BF%98%E5%91%BD%E4%BB%A4%E6%8C%87%E5%8D%97/" data-id="cmk2vqbfu001hwh6u4thm576r" data-title="git 常忘命令指南" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -144,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/01/06/Homebrew%E5%9B%BD%E5%86%85%E5%A6%82%E4%BD%95%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85-Mac-%E8%BD%AC%E8%BD%BD/" data-id="cmk2q80b2000bpx6u8t0a4747" data-title="Homebrew国内如何自动安装 Mac 转载" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/01/06/Homebrew%E5%9B%BD%E5%86%85%E5%A6%82%E4%BD%95%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85-Mac-%E8%BD%AC%E8%BD%BD/" data-id="cmk2vqbff000fwh6u8qkl1ju6" data-title="Homebrew国内如何自动安装 Mac 转载" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -189,16 +189,19 @@
 <h2 id="C-（cpp-预处理-编译-链接-exe）"><a href="#C-（cpp-预处理-编译-链接-exe）" class="headerlink" title="C++（cpp-&gt; 预处理 -&gt; 编译 -&gt; 链接 -&gt; .exe）"></a>C++（cpp-&gt; 预处理 -&gt; 编译 -&gt; 链接 -&gt; .exe）</h2><h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3><p>就是处理头文件，将头文件中的内容替换到cpp文件中，然后编译成汇编文件</p>
 <h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>将汇编文件编译成二进制文件，cmake制定需要编译的文件，使用第三方库需要指定库文件(.h)</p>
 <h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>将二进制文件链接成可执行文件，cmake需要制定链接库文件，使用第三方库需要指定库文件(.lib .dll)</p>
-<h2 id="SDL2-C-Cmake配置"><a href="#SDL2-C-Cmake配置" class="headerlink" title="SDL2 C++ Cmake配置"></a>SDL2 C++ Cmake配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.10.0)</span><br><span class="line">project(StarLand VERSION 0.1.0 LANGUAGES C CXX)</span><br><span class="line"></span><br><span class="line">include_directories(&quot;/opt/homebrew/opt/sdl2/include&quot;)</span><br><span class="line">link_directories(&quot;/opt/homebrew/opt/sdl2/lib&quot;)</span><br><span class="line"></span><br><span class="line">add_executable(StarLand main.cpp)</span><br><span class="line"></span><br><span class="line">target_link_libraries(StarLand SDL2 SDL2main)</span><br></pre></td></tr></table></figure>
+<h2 id="SDL2-C-Cmake配置"><a href="#SDL2-C-Cmake配置" class="headerlink" title="SDL2 C++ Cmake配置"></a>SDL2 C++ Cmake配置</h2><p>简单配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.10.0)</span><br><span class="line">project(StarLand VERSION 0.1.0 LANGUAGES C CXX)</span><br><span class="line"></span><br><span class="line">include_directories(&quot;/opt/homebrew/opt/sdl2/include&quot;)</span><br><span class="line">link_directories(&quot;/opt/homebrew/opt/sdl2/lib&quot;)</span><br><span class="line"></span><br><span class="line">add_executable(StarLand main.cpp)</span><br><span class="line"></span><br><span class="line">target_link_libraries(StarLand SDL2 SDL2main)</span><br></pre></td></tr></table></figure>
 
 <p>##Cmake 跨平台逻辑</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//可以参考这种</span><br><span class="line">if(APPLE)</span><br><span class="line">#mac 平台</span><br><span class="line">include_directories(&quot;/opt/homebrew/opt/sdl2/include&quot;)</span><br><span class="line">link_directories(&quot;/opt/homebrew/opt/sdl2/lib&quot;)</span><br><span class="line">endif(WIN32)</span><br><span class="line">#windows平台</span><br><span class="line">include_directories(&quot;C:/SDL2-2.0.18/include&quot;)</span><br><span class="line">link_directories(&quot;C:/SDL2-2.0.18/lib/x64&quot;)</span><br><span class="line">elseif(UNIX)</span><br><span class="line"># Linux平台</span><br><span class="line">include_directories(&quot;/usr/include/SDL2&quot;)</span><br><span class="line">link_directories(&quot;/usr/lib/x86_64-linux-gnu&quot;)</span><br><span class="line">endif()</span><br><span class="line"></span><br><span class="line">//或者这样,很多库的lib存在cmake文件，里面内置很多代码，可以直接使用</span><br><span class="line">![Image Alt Text](/images/posts/C++游戏开发日志/2.png)</span><br><span class="line"></span><br><span class="line">cmake_minimum_required(VERSION 3.10.0)</span><br><span class="line">project(StarLand VERSION 0.1.0 LANGUAGES C CXX)</span><br><span class="line"></span><br><span class="line">//include_directories(&quot;/opt/homebrew/opt/sdl2/include&quot;)</span><br><span class="line">//link_directories(&quot;/opt/homebrew/opt/sdl2/lib&quot;)</span><br><span class="line">find_package(SDL2 REQUIRED) //调用内置的cmake文件,上面的两句就不需要了</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_executable(StarLand main.cpp)</span><br><span class="line"></span><br><span class="line">target_link_libraries(StarLand SDL2::SDL2)  //调用内置的cmake文件,需要添加::SDL2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//可以参考这种</span><br><span class="line">if(APPLE)</span><br><span class="line">//mac 平台</span><br><span class="line">include_directories(&quot;/opt/homebrew/opt/sdl2/include&quot;)</span><br><span class="line">link_directories(&quot;/opt/homebrew/opt/sdl2/lib&quot;)</span><br><span class="line">endif(WIN32)</span><br><span class="line">//windows平台</span><br><span class="line">include_directories(&quot;C:/SDL2-2.0.18/include&quot;)</span><br><span class="line">link_directories(&quot;C:/SDL2-2.0.18/lib/x64&quot;)</span><br><span class="line">elseif(UNIX)</span><br><span class="line">//Linux平台</span><br><span class="line">include_directories(&quot;/usr/include/SDL2&quot;)</span><br><span class="line">link_directories(&quot;/usr/lib/x86_64-linux-gnu&quot;)</span><br><span class="line">endif()</span><br><span class="line"></span><br><span class="line">//或者这样,很多库的lib存在cmake文件，里面内置很多代码，可以直接使用</span><br><span class="line">![Image Alt Text](/images/posts/C++游戏开发日志/2.png)</span><br><span class="line"></span><br><span class="line">cmake_minimum_required(VERSION 3.10.0)</span><br><span class="line">project(StarLand VERSION 0.1.0 LANGUAGES C CXX)</span><br><span class="line"></span><br><span class="line">//include_directories(&quot;/opt/homebrew/opt/sdl2/include&quot;)</span><br><span class="line">//link_directories(&quot;/opt/homebrew/opt/sdl2/lib&quot;)</span><br><span class="line">find_package(SDL2 REQUIRED) //调用内置的cmake文件,上面的两句就不需要了</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_executable(StarLand main.cpp)</span><br><span class="line"></span><br><span class="line">target_link_libraries(StarLand SDL2::SDL2)  //调用内置的cmake文件,需要添加::SDL2,$&#123;SDL2_LIBRARIES&#125;是更好的跨平台逻辑</span><br></pre></td></tr></table></figure>
+<p>##引用错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//重新设置</span><br><span class="line">C/C++: Change Configuration Provider</span><br><span class="line">//强制重置 IntelliSense 数据库</span><br><span class="line">C/C++: Reset IntelliSense Database</span><br></pre></td></tr></table></figure>
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/01/06/C-%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/" data-id="cmk2q80az0003px6ucdoc9l5x" data-title="C++游戏开发日志" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/01/06/C-%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/" data-id="cmk2vqbf70006wh6uhnjl04fe" data-title="C++游戏开发日志" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -249,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/01/06/Mac-C-%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" data-id="cmk2q80b4000wpx6u8o0w7h5l" data-title="# Mac C++游戏开发环境" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/01/06/Mac-C-%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" data-id="cmk2vqbfl000xwh6u2w618tp4" data-title="# Mac C++游戏开发环境" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -294,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/01/04/C-Godot-%E7%BC%96%E8%AF%91%E4%B8%8D%E7%94%9F%E6%95%88/" data-id="cmk2q80ay0001px6uc75teg1w" data-title="C# Godot 编译不生效" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/01/04/C-Godot-%E7%BC%96%E8%AF%91%E4%B8%8D%E7%94%9F%E6%95%88/" data-id="cmk2vqbf30004wh6ucjww5501" data-title="C# Godot 编译不生效" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -340,7 +343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/09/30/SQL-search-column/" data-id="cmk2q80b50017px6ugsiq17pd" data-title="SQL search column" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/09/30/SQL-search-column/" data-id="cmk2vqbfq001awh6ufeva3l8i" data-title="SQL search column" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -657,7 +660,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/09/09/Restaurant-Somethings/" data-id="cmk2q80b50013px6u3e45gmdo" data-title="Restaurant Something" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/09/09/Restaurant-Somethings/" data-id="cmk2vqbfm0012wh6ubslqhgro" data-title="Restaurant Something" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -798,7 +801,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/09/08/Java-Garbage-Collection-GC/" data-id="cmk2q80b3000mpx6ub0598xbf" data-title="Java: Garbage Collection, GC" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/09/08/Java-Garbage-Collection-GC/" data-id="cmk2vqbfh000kwh6uf5hi419q" data-title="Java: Garbage Collection, GC" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -860,7 +863,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/09/05/jd-gui%EF%BC%881-4-version%EF%BC%89and-1-6-version-problem/" data-id="cmk2q80bb0030px6u0qzta7jx" data-title="jd-gui（1.4 version）and (1.6 version) problem" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/09/05/jd-gui%EF%BC%881-4-version%EF%BC%89and-1-6-version-problem/" data-id="cmk2vqbfy001rwh6u3vr31a9k" data-title="jd-gui（1.4 version）and (1.6 version) problem" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -909,7 +912,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/09/03/Log-of-Far-Away/" data-id="cmk2q80b3000spx6u3rcz67kg" data-title="Log of Far Away" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/09/03/Log-of-Far-Away/" data-id="cmk2vqbfj000qwh6u2p3i1sne" data-title="Log of Far Away" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
