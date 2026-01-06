@@ -80,11 +80,14 @@ endif()
 cmake_minimum_required(VERSION 3.10.0)
 project(StarLand VERSION 0.1.0 LANGUAGES C CXX)
 
-find_package(SDL2 REQUIRED) //调用内置的cmake文件
+//include_directories("/opt/homebrew/opt/sdl2/include")
+//link_directories("/opt/homebrew/opt/sdl2/lib")
+find_package(SDL2 REQUIRED) //调用内置的cmake文件,上面的两句就不需要了
+
 
 add_executable(StarLand main.cpp)
 
-target_link_libraries(StarLand SDL2::SDL2)
+target_link_libraries(StarLand SDL2::SDL2)  //调用内置的cmake文件,需要添加::SDL2
 
 ```
 
