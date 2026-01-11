@@ -5,7 +5,7 @@ tags:
  -Game
  -C++
 ---
-##参考视频 B站ZiyuGameDev
+## 参考视频 B站ZiyuGameDev
 ## 头文件减少依赖，能够增加编译速度
 ```
 // 向前声明，减少头文件以来，增加编译速度
@@ -15,16 +15,17 @@ struct SDL_Renderer;
 // 在使用的时候再去.cpp文件读取头文件
 ```
 ## Cmake使用
-###设置
+## 设置
+```
 先使用command + shift + p
 使用Cmake Quick Start创建项目，Cmake会自动生成CMakeLists.txt文件，会辅助我们生成Makefile
-```
+
 cmake_minimum_required(VERSION 3.10.0) //安装的cmake版本号最低要求
 project(StarLand VERSION 0.1.0 LANGUAGES C CXX) //项目名称，版本号，语言
 
 add_executable(StarLand main.cpp)   //需要编译执行的文件，生成一个可执行文件
 ```
-###Cmake作用，类似于Maven，添加需要加载的依赖以及设置
+### Cmake作用，类似于Maven，添加需要加载的依赖以及设置
 ![Image Alt Text](/images/posts/C++游戏开发日志/1.png)
 类似于这种需要加载库的时候报错，一般是Cmake没有加载对应的库，需要去CmakeLists.txt中添加对应的库。告诉系统文件位置。
 ```
@@ -45,6 +46,7 @@ brew --prefix sdl2
 将二进制文件链接成可执行文件，cmake需要制定链接库文件，使用第三方库需要指定库文件(.lib .dll)
 
 ## SDL2 C++ Cmake配置
+#### 简单配置
 ```
 cmake_minimum_required(VERSION 3.10.0)
 project(StarLand VERSION 0.1.0 LANGUAGES C CXX)
@@ -57,24 +59,25 @@ add_executable(StarLand main.cpp)
 target_link_libraries(StarLand SDL2 SDL2main)
 ```
 
-##Cmake 跨平台逻辑
+### 简单方法 Cmake 跨平台逻辑
 ```
 //可以参考这种
 if(APPLE)
-#mac 平台
+//mac 平台
 include_directories("/opt/homebrew/opt/sdl2/include")
 link_directories("/opt/homebrew/opt/sdl2/lib")
 endif(WIN32)
-#windows平台
+//windows平台
 include_directories("C:/SDL2-2.0.18/include")
 link_directories("C:/SDL2-2.0.18/lib/x64")
 elseif(UNIX)
-# Linux平台
+//Linux平台
 include_directories("/usr/include/SDL2")
 link_directories("/usr/lib/x86_64-linux-gnu")
 endif()
-
-//或者这样,很多库的lib存在cmake文件，里面内置很多代码，可以直接使用
+```
+### 或者这样,很多库的lib存在cmake文件，里面内置很多代码，可以直接使用
+```
 ![Image Alt Text](/images/posts/C++游戏开发日志/2.png)
 
 cmake_minimum_required(VERSION 3.10.0)
@@ -87,7 +90,44 @@ find_package(SDL2 REQUIRED) //调用内置的cmake文件,上面的两句就不�
 
 add_executable(StarLand main.cpp)
 
-target_link_libraries(StarLand SDL2::SDL2)  //调用内置的cmake文件,需要添加::SDL2
-
+target_link_libraries(StarLand SDL2::SDL2)  //调用内置的cmake文件,需要添加::SDL2,${SDL2_LIBRARIES}是更好的跨平台逻辑
 ```
+## 引用错误
+```
+//重新设置
+C/C++: Change Configuration Provider
+//强制重置 IntelliSense 数据库
+C/C++: Reset IntelliSense Database
+```
+
+## C++单例模式
+```
+//单例模式
+class Singleton {
+public:
+    static Singleton& getInstance() {
+        static Singleton instance;
+        return instance;
+    }
+    void doSomething() {
+        // do something
+    }
+private:
+    Singleton() {} // 私有构造函数
+    Singleton(const Singleton&) = delete; // 禁止拷贝构造函数
+    Singleton& operator=(const Singleton&) = delete; // 禁止赋值操作符
+};
+//使用
+Singleton& instance = Singleton::getInstance();
+instance.doSomething();
+```
+## 无法引入头文件
+```
+// 添加可执行文件，查看cmake配置文件是不是没有配置
+add_executable(${TARGET} 
+                src/main.cpp
+                src/Game.cpp
+                src/SceneMain.cpp)
+```
+
 
