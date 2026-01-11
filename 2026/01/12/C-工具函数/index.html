@@ -4,14 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Tag: Words | Su Youpeng blogs</title>
+  <title>C++ 工具函数 | Su Youpeng blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Su Youpeng blogs">
-<meta property="og:url" content="http://example.com/tags/Words/index.html">
+  <meta name="description" content="C++单例模式1234567891011121314151617class Singleton &#123;public:    static Singleton&amp; getInstance() &#123;        static Singleton instance;        return instance;    &#125;    void doSomething() &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 工具函数">
+<meta property="og:url" content="http://example.com/2026/01/12/C-%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Su Youpeng blogs">
+<meta property="og:description" content="C++单例模式1234567891011121314151617class Singleton &#123;public:    static Singleton&amp; getInstance() &#123;        static Singleton instance;        return instance;    &#125;    void doSomething() &amp;#">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-01-11T21:36:21.000Z">
+<meta property="article:modified_time" content="2026-01-11T21:45:32.806Z">
 <meta property="article:author" content="Su Youpeng">
+<meta property="article:tag" content="-Game -C++">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Su Youpeng blogs" type="application/atom+xml">
@@ -73,39 +78,56 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2025" class="archive-year">2025</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2025/09/09/Restaurant-Somethings/" class="archive-article-date">
-  <time class="dt-published" datetime="2025-09-08T22:15:04.000Z" itemprop="datePublished">Sep 9</time>
+        <section id="main"><article id="post-C-工具函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/01/12/C-%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2026-01-11T21:36:21.000Z" itemprop="datePublished">2026-01-12</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2025/09/09/Restaurant-Somethings/">Restaurant Something</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      C++ 工具函数
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="C-单例模式"><a href="#C-单例模式" class="headerlink" title="C++单例模式"></a>C++单例模式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Singleton &#123;</span><br><span class="line">public:</span><br><span class="line">    static Singleton&amp; getInstance() &#123;</span><br><span class="line">        static Singleton instance;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">    void doSomething() &#123;</span><br><span class="line">        // do something</span><br><span class="line">    &#125;</span><br><span class="line">private:</span><br><span class="line">    Singleton() &#123;&#125; // 私有构造函数</span><br><span class="line">    Singleton(const Singleton&amp;) = delete; // 禁止拷贝构造函数</span><br><span class="line">    Singleton&amp; operator=(const Singleton&amp;) = delete; // 禁止赋值操作符</span><br><span class="line">&#125;;</span><br><span class="line">//使用</span><br><span class="line">Singleton&amp; instance = Singleton::getInstance();</span><br><span class="line">instance.doSomething();</span><br></pre></td></tr></table></figure>
+<h2 id="去除UTF-8字符串最后一个字符"><a href="#去除UTF-8字符串最后一个字符" class="headerlink" title="去除UTF_8字符串最后一个字符"></a>去除UTF_8字符串最后一个字符</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//区分中文，英文</span><br><span class="line">void SceneEnd::removeLastUTF8Char(std::string &amp;str)</span><br><span class="line">&#123;</span><br><span class="line">   if (str.empty()) return;</span><br><span class="line"></span><br><span class="line">    // 从字符串末尾向前探测</span><br><span class="line">    size_t lastPos = str.length() - 1;</span><br><span class="line"></span><br><span class="line">    // UTF-8 的后续字节（Trailing bytes）都以 10 开头 (即 0x80 到 0xBF)</span><br><span class="line">    // 我们一直向前找，直到找到该字符的起始字节</span><br><span class="line">    while (lastPos &gt; 0 &amp;&amp; (str[lastPos] &amp; 0xC0) == 0x80) &#123;</span><br><span class="line">        lastPos--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 此时 lastPos 指向最后一个字符的起始位置</span><br><span class="line">    str.erase(lastPos);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/01/12/C-%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/" data-id="cmka9jwru0001lz6u3oyjbcfr" data-title="C++ 工具函数" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Game-C/" rel="tag">-Game -C++</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/01/06/git-%E5%B8%B8%E5%BF%98%E5%91%BD%E4%BB%A4%E6%8C%87%E5%8D%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">git 常忘命令指南</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
