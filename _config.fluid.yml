@@ -4,7 +4,7 @@ index:
     enable: true
     # 如果想显示多行轮播，可以按如下配置：
     text: 
-      - "正在学习..."
+      - "正在学习...<br>"
       - "生活不只有代码，还有游戏和远方"
     typingSpeed: 70  # 打印速度
     loop: true       # 是否循环
