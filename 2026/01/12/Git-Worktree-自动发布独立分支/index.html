@@ -19,21 +19,22 @@
   <meta name="author" content="Su Youpeng">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安装emscripten12345678910111213141516171819202122232425262728&#x2F;&#x2F;Emscripten 是一个将 C&#x2F;C++ 代码编译为 WebAssembly (Wasm) 的完整工具链&#x2F;&#x2F;卸载原来的brew uninstall emscriptenunalias emcc&#x2F;&#x2F;安装官方sdkcd ~git clone https:&#x2F;&#x2F;github.com&#x2F;">
+    <meta name="description" content="在游戏开发中，我们经常需要将生成的文档（如 Doxygen）、构建报告或 Web 版游戏（Emscripten 编译出的 HTML）自动发布到独立的分支（如 gh-pages 或 docs 分支）。 为了不让这些生成的 HTML 文件污染你的源代码历史，最专业的方法是使用 git worktree。这种方法允许你在本地另一个文件夹中直接操作另一个分支，而无需来回切换（checkout）。 核心步骤">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C&#x2F;C++游戏转为网页">
-<meta property="og:url" content="http://example.com/2026/01/12/C-C-%E6%B8%B8%E6%88%8F%E8%BD%AC%E4%B8%BA%E7%BD%91%E9%A1%B5/index.html">
+<meta property="og:title" content="Git Worktree 自动发布独立分支">
+<meta property="og:url" content="http://example.com/2026/01/12/Git-Worktree-%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83%E7%8B%AC%E7%AB%8B%E5%88%86%E6%94%AF/index.html">
 <meta property="og:site_name" content="Su Youpeng blogs">
-<meta property="og:description" content="安装emscripten12345678910111213141516171819202122232425262728&#x2F;&#x2F;Emscripten 是一个将 C&#x2F;C++ 代码编译为 WebAssembly (Wasm) 的完整工具链&#x2F;&#x2F;卸载原来的brew uninstall emscriptenunalias emcc&#x2F;&#x2F;安装官方sdkcd ~git clone https:&#x2F;&#x2F;github.com&#x2F;">
+<meta property="og:description" content="在游戏开发中，我们经常需要将生成的文档（如 Doxygen）、构建报告或 Web 版游戏（Emscripten 编译出的 HTML）自动发布到独立的分支（如 gh-pages 或 docs 分支）。 为了不让这些生成的 HTML 文件污染你的源代码历史，最专业的方法是使用 git worktree。这种方法允许你在本地另一个文件夹中直接操作另一个分支，而无需来回切换（checkout）。 核心步骤">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-01-12T13:33:53.000Z">
-<meta property="article:modified_time" content="2026-01-12T17:42:27.658Z">
+<meta property="article:published_time" content="2026-01-12T15:10:47.000Z">
+<meta property="article:modified_time" content="2026-01-12T16:12:41.995Z">
 <meta property="article:author" content="Su Youpeng">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>C/C++游戏转为网页 - Su Youpeng blogs</title>
+  <title>Git Worktree 自动发布独立分支 - Su Youpeng blogs</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="C/C++游戏转为网页"></span>
+            <span id="subtitle" data-typed-text="Git Worktree 自动发布独立分支"></span>
           
         </div>
 
@@ -210,7 +211,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-12 21:33" pubdate>
+        <time datetime="2026-01-12 23:10" pubdate>
           2026年1月12日 晚上
         </time>
       </span>
@@ -222,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          562 字
+          665 字
         
       </span>
     
@@ -233,7 +234,7 @@
         
         
         
-          5 分钟
+          6 分钟
         
       </span>
     
@@ -270,22 +271,26 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">C/C++游戏转为网页</h1>
+            <h1 id="seo-header">Git Worktree 自动发布独立分支</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="安装emscripten"><a href="#安装emscripten" class="headerlink" title="安装emscripten"></a>安装emscripten</h2><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-string">//Emscripten</span> 是一个将 C/C++ 代码编译为 WebAssembly <span class="hljs-params">(Wasm)</span> 的完整工具链<br><span class="hljs-string">//</span>卸载原来的<br>brew uninstall emscripten<br><span class="hljs-keyword">unalias</span> emcc<br><span class="hljs-string">//</span>安装官方sdk<br><span class="hljs-keyword">cd</span> ~<br>git clone https:<span class="hljs-string">//github.com/emscripten-core/emsdk.git</span><br><span class="hljs-keyword">cd</span> emsdk<br><span class="hljs-string">./emsdk</span> install latest<br><span class="hljs-string">./emsdk</span> activate latest<br><span class="hljs-string">//</span>激活<br>source <span class="hljs-string">&quot;/Users/NAME/emsdk/emsdk_env.sh&quot;</span><br><span class="hljs-string">//</span>第一次配置<br>emcc -v<br><span class="hljs-string">//</span>到路径下直接生成，SDL2的<br><span class="hljs-comment"># 首先创建文件夹（Windows 使用 mkdir，Linux/Mac 使用 mkdir -p）</span><br>mkdir -p dist<br><br><span class="hljs-comment"># 运行 emcc，修改 -o 路径</span><br>emcc src/*<span class="hljs-string">.cpp</span> -o dist/index.html \<br>  -s USE_SDL=2 \<br>  -s USE_SDL_IMAGE=2 \<br>  -s USE_SDL_TTF=2 \<br>  -s USE_SDL_MIXER=2 \<br>  -s SDL2_IMAGE_FORMATS=&#x27;[<span class="hljs-string">&quot;png&quot;</span>]&#x27; \<br>  -s SDL2_MIXER_FORMATS=&#x27;[<span class="hljs-string">&quot;mp3&quot;</span>,<span class="hljs-string">&quot;ogg&quot;</span>]&#x27; \<br>  <span class="hljs-params">--preload-file</span> assets@assets \<br>  -O2<br></code></pre></td></tr></table></figure>
-<h2 id="编写与编译代码"><a href="#编写与编译代码" class="headerlink" title="编写与编译代码"></a>编写与编译代码</h2><h3 id="基础编译-生成-JavaScript"><a href="#基础编译-生成-JavaScript" class="headerlink" title="基础编译 (生成 JavaScript)"></a>基础编译 (生成 JavaScript)</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">emcc <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.cpp</span> -o <span class="hljs-selector-tag">main</span>.js<br></code></pre></td></tr></table></figure>
-<h3 id="完整编译-生成可运行网页"><a href="#完整编译-生成可运行网页" class="headerlink" title="完整编译 (生成可运行网页)"></a>完整编译 (生成可运行网页)</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">emcc <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.cpp</span> -o index.html<br></code></pre></td></tr></table></figure>
-<h3 id="常用编译选项"><a href="#常用编译选项" class="headerlink" title="常用编译选项"></a>常用编译选项</h3><p>选项,说明<br>-O3,优化级别：极致优化代码体积和运行速度。<br>-s WASM&#x3D;1,明确指定输出 WebAssembly（默认即为1）。<br>-s NO_EXIT_RUNTIME&#x3D;1,保持运行时：防止 main 函数执行完后环境被销毁。</p>
-<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">brew uninstall emscripten</span><br></code></pre></td></tr></table></figure>
+                <p>在游戏开发中，我们经常需要将生成的文档（如 Doxygen）、构建报告或 Web 版游戏（Emscripten 编译出的 HTML）自动发布到独立的分支（如 gh-pages 或 docs 分支）。</p>
+<p>为了不让这些生成的 HTML 文件污染你的源代码历史，最专业的方法是使用 git worktree。这种方法允许你在本地另一个文件夹中直接操作另一个分支，而无需来回切换（checkout）。</p>
+<h2 id="核心步骤：使用-Git-Worktree"><a href="#核心步骤：使用-Git-Worktree" class="headerlink" title="核心步骤：使用 Git Worktree"></a>核心步骤：使用 Git Worktree</h2><p>假设你的主分支是 main，目标分支是 gh-pages，HTML 文件在 dist&#x2F; 目录下。</p>
+<h2 id="1-准备目标分支（只需做一次）"><a href="#1-准备目标分支（只需做一次）" class="headerlink" title="1. 准备目标分支（只需做一次）"></a>1. 准备目标分支（只需做一次）</h2><p>如果远程还没有这个分支，先创建一个孤儿分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">git checkout --orphan gh-pages<br>git <span class="hljs-built_in">rm</span> -rf .<br>git commit --allow-empty -m <span class="hljs-string">&quot;Init gh-pages&quot;</span><br>git push origin gh-pages<br>git checkout main<br></code></pre></td></tr></table></figure>
+<h2 id="2-将目标分支挂载到子目录"><a href="#2-将目标分支挂载到子目录" class="headerlink" title="2. 将目标分支挂载到子目录"></a>2. 将目标分支挂载到子目录</h2><p>在主分支下，将 gh-pages 分支关联到一个临时文件夹（如 out-branch）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 这样 out-branch 文件夹里的内容就是 gh-pages 分支的代码</span><br>git worktree add out-branch gh-pages<br></code></pre></td></tr></table></figure>
+<h2 id="2-复制文件并提交"><a href="#2-复制文件并提交" class="headerlink" title="2. 复制文件并提交"></a>2. 复制文件并提交</h2><p>这一步通常写在你的构建脚本（如 .bat 或 Makefile）中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1. 运行你的游戏构建命令，生成 html 到 dist/</span><br><span class="hljs-comment"># 2. 清空目标文件夹</span><br><span class="hljs-built_in">rm</span> -rf out-branch/* <span class="hljs-comment"># 3. 将生成的 html 拷贝过去</span><br><span class="hljs-built_in">cp</span> -r dist/* out-branch/<br><span class="hljs-comment"># 4. 进入该文件夹提交并推送</span><br><span class="hljs-built_in">cd</span> out-branch<br>git add .<br>git commit -m <span class="hljs-string">&quot;Deploy updated HTML&quot;</span><br>git push origin gh-pages<br><span class="hljs-built_in">cd</span> ..<br></code></pre></td></tr></table></figure>
 
-<h1 id="修改C-代码"><a href="#修改C-代码" class="headerlink" title="修改C++代码"></a>修改C++代码</h1><p>对于 C++游戏，直接移植到 Emscripten (EMS) 最核心的问题是：浏览器环境不允许 C++ 代码像在桌面端那样使用 while(true) 死循环。如果你的代码里有死循环，浏览器的主线程就会被永久阻塞，导致画面永远无法渲染（黑屏）。</p>
-<p>你需要按照以下步骤修改你的 C++ 代码，使其符合 EMS 的异步架构：</p>
-<h2 id="1-修改-C-主循环结构"><a href="#1-修改-C-主循环结构" class="headerlink" title="1. 修改 C++ 主循环结构"></a>1. 修改 C++ 主循环结构</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//错误写法</span><br><span class="hljs-comment">// 这会导致浏览器卡死黑屏</span><br><span class="hljs-keyword">while</span> (gameRunning) &#123;<br>    <span class="hljs-built_in">handleEvents</span>();<br>    <span class="hljs-built_in">update</span>();<br>    <span class="hljs-built_in">render</span>();<br>    <span class="hljs-built_in">SDL_Delay</span>(<span class="hljs-number">16</span>); <br>  <br>&#125;<br><span class="hljs-comment">//EMS 正确写法</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;SDL2/SDL.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> __EMSCRIPTEN__</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;emscripten.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-comment">// 将原本死循环里的逻辑抽离成一个函数</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">main_loop</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// 1. 处理输入</span><br>    <span class="hljs-comment">// 2. 更新逻辑</span><br>    <span class="hljs-comment">// 3. 渲染画面</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span>* argv[])</span> </span>&#123;<br>    <span class="hljs-comment">// ... 你的初始化代码 (SDL_Init, Window, Renderer) ...</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> __EMSCRIPTEN__</span><br>    <span class="hljs-comment">// 参数说明：回调函数, 帧率(0为使用浏览器请求动画帧), 是否模拟无限循环</span><br>    <span class="hljs-built_in">emscripten_set_main_loop</span>(main_loop, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>);<br><span class="hljs-meta">#<span class="hljs-keyword">else</span></span><br>    <span class="hljs-comment">// 桌面端原本的死循环</span><br>    <span class="hljs-keyword">while</span> (gameRunning) &#123;<br>        <span class="hljs-built_in">main_loop</span>();<br>        <span class="hljs-built_in">SDL_Delay</span>(<span class="hljs-number">16</span>);<br>    &#125;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//增加一个静态函数</span><br><span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">mainLoopWrapper</span><span class="hljs-params">(<span class="hljs-type">void</span>* arg)</span></span>;<br></code></pre></td></tr></table></figure>
-<h2 id="2-需要增加头文件"><a href="#2-需要增加头文件" class="headerlink" title="2. 需要增加头文件"></a>2. 需要增加头文件</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> __EMSCRIPTEN__</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;emscripten.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
-<h2 id="3-重新编译的"><a href="#3-重新编译的" class="headerlink" title="3. 重新编译的"></a>3. 重新编译的</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">emcc</span> src/*.cpp -o index.html <span class="hljs-punctuation">\</span><br><span class="hljs-punctuation"></span>  -s USE_SDL=<span class="hljs-number">2</span> <span class="hljs-punctuation">\</span><br><span class="hljs-punctuation"></span>  -s USE_SDL_IMAGE=<span class="hljs-number">2</span> <span class="hljs-punctuation">\</span><br><span class="hljs-punctuation"></span>  -s USE_SDL_TTF=<span class="hljs-number">2</span> <span class="hljs-punctuation">\</span><br><span class="hljs-punctuation"></span>  -s USE_SDL_MIXER=<span class="hljs-number">2</span> <span class="hljs-punctuation">\</span><br><span class="hljs-punctuation"></span>  -s SDL2_IMAGE_FORMATS=&#x27;[<span class="hljs-string">&quot;png&quot;</span>]&#x27; <span class="hljs-punctuation">\</span><br><span class="hljs-punctuation"></span>  -s SDL2_MIXER_FORMATS=&#x27;[<span class="hljs-string">&quot;mp3&quot;</span>,<span class="hljs-string">&quot;ogg&quot;</span>]&#x27; <span class="hljs-punctuation">\</span><br><span class="hljs-punctuation"></span>  --preload-file assets@assets <span class="hljs-punctuation">\</span><br><span class="hljs-punctuation"></span>  -s ASSERTIONS=<span class="hljs-number">1</span> <span class="hljs-punctuation">\</span><br><span class="hljs-punctuation"></span>  -s SAFE_HEAP=<span class="hljs-number">1</span> <span class="hljs-punctuation">\</span><br><span class="hljs-punctuation"></span>  -s ALLOW_MEMORY_GROWTH=<span class="hljs-number">1</span> <span class="hljs-punctuation">\</span><br><span class="hljs-punctuation"></span>  -O2<br></code></pre></td></tr></table></figure>
+<h1 id="1-配置完成后更新提交"><a href="#1-配置完成后更新提交" class="headerlink" title="1.配置完成后更新提交"></a>1.配置完成后更新提交</h1><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">emcc src/*.cpp -o dist/index.html \<br>  -s USE_SDL=2 \<br>  -s USE_SDL_IMAGE=2 \<br>  -s USE_SDL_TTF=2 \<br>  -s USE_SDL_MIXER=2 \<br>  -s SDL2_IMAGE_FORMATS=<span class="hljs-string">&#x27;[&quot;png&quot;]&#x27;</span> \<br>  -s SDL2_MIXER_FORMATS=<span class="hljs-string">&#x27;[&quot;mp3&quot;,&quot;ogg&quot;]&#x27;</span> \<br>  --preload-file assets@assets \<br>  -O2<br></code></pre></td></tr></table></figure>
+<h2 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> -r dist/* out-branch/<br></code></pre></td></tr></table></figure>
+<h2 id="推送"><a href="#推送" class="headerlink" title="推送"></a>推送</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> out-branch<br>git add .<br>git commit -m <span class="hljs-string">&quot;Update&quot;</span><br>git push origin gh-pages<br><span class="hljs-built_in">cd</span> ..<br></code></pre></td></tr></table></figure>
+<h1 id="2-自动化执行脚本"><a href="#2-自动化执行脚本" class="headerlink" title="2.自动化执行脚本"></a>2.自动化执行脚本</h1><p>chmod +x deploy.sh &#x2F;&#x2F; 权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-built_in">set</span> -e <br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;正在编译最新版本...&quot;</span><br><span class="hljs-built_in">mkdir</span> -p dist<br><br><span class="hljs-comment"># 1. 编译 (确保编译成功)</span><br>emcc src/*.cpp -o dist/index.html \<br>  -s USE_SDL=2 \<br>  -s USE_SDL_IMAGE=2 \<br>  -s USE_SDL_TTF=2 \<br>  -s USE_SDL_MIXER=2 \<br>  -s SDL2_IMAGE_FORMATS=<span class="hljs-string">&#x27;[&quot;png&quot;]&#x27;</span> \<br>  -s SDL2_MIXER_FORMATS=<span class="hljs-string">&#x27;[&quot;mp3&quot;,&quot;ogg&quot;]&#x27;</span> \<br>  --preload-file assets@assets \<br>  -O2<br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;正在同步到发布分支...&quot;</span><br><br><span class="hljs-comment"># 2. 检查 worktree 状态</span><br><span class="hljs-keyword">if</span> [ ! -d <span class="hljs-string">&quot;out-branch/.git&quot;</span> ] &amp;&amp; [ ! -f <span class="hljs-string">&quot;out-branch/.git&quot;</span> ]; <span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;错误: out-branch 文件夹不是有效的 Git Worktree。&quot;</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;请尝试运行: git worktree add out-branch gh-pages&quot;</span><br>    <span class="hljs-built_in">exit</span> 1<br><span class="hljs-keyword">fi</span><br><br><span class="hljs-comment"># 3. 使用 rsync 同步 (这是最安全的方法)</span><br><span class="hljs-comment"># --delete: 删除目标目录中多余的文件</span><br><span class="hljs-comment"># --exclude=&#x27;.git&#x27;: 绝对不触碰 git 核心管理文件</span><br><span class="hljs-comment"># 注意 dist/ 后面那个斜杠，代表同步目录内容而不是目录本身</span><br>rsync -av --delete --exclude=<span class="hljs-string">&#x27;.git&#x27;</span> dist/ out-branch/<br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;正在推送更新到远程...&quot;</span><br><span class="hljs-built_in">cd</span> out-branch<br><br><span class="hljs-comment"># 4. 提交并推送</span><br><span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;<span class="hljs-subst">$(git status --porcelain)</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>    git add .<br>    git commit -m <span class="hljs-string">&quot;Update game build: <span class="hljs-subst">$(date +&#x27;%Y-%m-%d %H:%M:%S&#x27;)</span>&quot;</span><br>    git push origin gh-pages<br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;✅ 远程分支更新成功！&quot;</span><br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;ℹ️ 内容无变化，跳过推送。&quot;</span><br><span class="hljs-keyword">fi</span><br><br><span class="hljs-built_in">cd</span> ..<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -293,6 +298,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BB%A3%E7%A0%81%E4%BA%BA%E7%94%9F/" class="category-chain-item">代码人生</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Git/" class="print-no-link">#Git</a>
+      
+    </div>
   
 </div>
 
@@ -302,8 +335,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>C/C++游戏转为网页</div>
-      <div>http://example.com/2026/01/12/C-C-游戏转为网页/</div>
+      <div>Git Worktree 自动发布独立分支</div>
+      <div>http://example.com/2026/01/12/Git-Worktree-自动发布独立分支/</div>
     </div>
     <div class="license-meta">
       
@@ -347,18 +380,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/01/12/Git-Worktree-%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83%E7%8B%AC%E7%AB%8B%E5%88%86%E6%94%AF/" title="Git Worktree 自动发布独立分支">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git Worktree 自动发布独立分支</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/01/12/%E6%9B%B4%E6%8D%A2Hexo%E4%B8%BB%E9%A2%98/" title="更换Hexo主题">
-                        <span class="hidden-mobile">更换Hexo主题</span>
+                      <a href="/2026/01/12/C-C-%E6%B8%B8%E6%88%8F%E8%BD%AC%E4%B8%BA%E7%BD%91%E9%A1%B5/" title="C/C++游戏转为网页">
+                        <span class="hidden-mobile">C/C++游戏转为网页</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
