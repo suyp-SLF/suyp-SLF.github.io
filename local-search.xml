@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>更换Hexo主题</title>
+    <link href="/2026/01/12/%E6%9B%B4%E6%8D%A2Hexo%E4%B8%BB%E9%A2%98/"/>
+    <url>/2026/01/12/%E6%9B%B4%E6%8D%A2Hexo%E4%B8%BB%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h2 id="更换主题可以直接采用Hexo官方提供的主题，也可以自己制作主题，这里主要介绍如何更换主题。"><a href="#更换主题可以直接采用Hexo官方提供的主题，也可以自己制作主题，这里主要介绍如何更换主题。" class="headerlink" title="更换主题可以直接采用Hexo官方提供的主题，也可以自己制作主题，这里主要介绍如何更换主题。"></a>更换主题可以直接采用Hexo官方提供的主题，也可以自己制作主题，这里主要介绍如何更换主题。</h2><h3 id="1-下载主题"><a href="#1-下载主题" class="headerlink" title="1. 下载主题"></a>1. 下载主题</h3><p>在Hexo官网的主题页面，找到你喜欢的主题，点击进入主题页面，然后点击下载按钮，下载主题压缩包。</p><h3 id="2-解压主题"><a href="#2-解压主题" class="headerlink" title="2. 解压主题"></a>2. 解压主题</h3><p>将下载的主题压缩包解压到Hexo博客的<code>themes</code>文件夹下。<br>重要：这里的文件名需要修改为主题的名称，例如<code>fluid</code>。<br><img src="/images/posts/%E6%9B%B4%E6%8D%A2Hexo%E4%B8%BB%E9%A2%98/1.png" alt="view"></p><h3 id="3-修改配置文件"><a href="#3-修改配置文件" class="headerlink" title="3. 修改配置文件"></a>3. 修改配置文件</h3><p>打开Hexo博客的配置文件<code>_config.yml</code>，找到<code>theme</code>字段，将其修改为你要使用的主题名称。<br><img src="/images/posts/%E6%9B%B4%E6%8D%A2Hexo%E4%B8%BB%E9%A2%98/2.png" alt="view"><br><img src="/images/posts/%E6%9B%B4%E6%8D%A2Hexo%E4%B8%BB%E9%A2%98/3.png" alt="view"></p><h3 id="4-重新启动Hexo服务器"><a href="#4-重新启动Hexo服务器" class="headerlink" title="4. 重新启动Hexo服务器"></a>4. 重新启动Hexo服务器</h3>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>-Hexo -Blog</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>创建显示3D模型的网站</title>
     <link href="/2026/01/12/%E5%88%9B%E5%BB%BA%E6%98%BE%E7%A4%BA3D%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BD%91%E7%AB%99/"/>
     <url>/2026/01/12/%E5%88%9B%E5%BB%BA%E6%98%BE%E7%A4%BA3D%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BD%91%E7%AB%99/</url>
