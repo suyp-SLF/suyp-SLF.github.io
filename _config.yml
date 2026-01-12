@@ -8,7 +8,7 @@ subtitle: 'Learn, Build, Share, Repeat'
 description: ''
 keywords:
 author: Su Youpeng
-language: en
+language: zh-CN  # 指定语言，会影响主题显示的语言，按需修改
 timezone: ''
 
 # URL
@@ -97,7 +97,7 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 #theme: landscape
-theme: fluid
+theme: fluid  # 指定主题
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
