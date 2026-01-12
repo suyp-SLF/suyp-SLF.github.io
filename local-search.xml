@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>C/C++游戏转为网页</title>
+    <link href="/2026/01/12/C-C-%E6%B8%B8%E6%88%8F%E8%BD%AC%E4%B8%BA%E7%BD%91%E9%A1%B5/"/>
+    <url>/2026/01/12/C-C-%E6%B8%B8%E6%88%8F%E8%BD%AC%E4%B8%BA%E7%BD%91%E9%A1%B5/</url>
+    
+    <content type="html"><![CDATA[<h2 id="安装emscripten"><a href="#安装emscripten" class="headerlink" title="安装emscripten"></a>安装emscripten</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-comment">//Emscripten 是一个将 C/C++ 代码编译为 WebAssembly (Wasm) 的完整工具链</span><br>brew install emscripten<br><span class="hljs-comment">//验证安装</span><br>emcc <span class="hljs-punctuation">-</span>v<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>更换Hexo主题</title>
     <link href="/2026/01/12/%E6%9B%B4%E6%8D%A2Hexo%E4%B8%BB%E9%A2%98/"/>
     <url>/2026/01/12/%E6%9B%B4%E6%8D%A2Hexo%E4%B8%BB%E9%A2%98/</url>
