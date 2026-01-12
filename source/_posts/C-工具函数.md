@@ -45,3 +45,10 @@ void SceneEnd::removeLastUTF8Char(std::string &str)
     str.erase(lastPos);
 }
 ```
+## map排序
+```
+//按照int从大到小排序
+std::map<int, std::string, std::greater<int>> rank;
+
+
+```
