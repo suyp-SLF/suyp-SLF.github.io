@@ -117,6 +117,7 @@ private:
     Singleton(const Singleton&) = delete; // 禁止拷贝构造函数
     Singleton& operator=(const Singleton&) = delete; // 禁止赋值操作符
 };
+//这里非常要注意，私有构造函数Singleton() {}， 大括号一定要有、一定要有、一定要有
 //使用
 Singleton& instance = Singleton::getInstance();
 instance.doSomething();
@@ -130,4 +131,23 @@ add_executable(${TARGET}
                 src/SceneMain.cpp)
 ```
 
+# 像素游戏设置 Renderer 和 Window (Nearest Neighbor)
+```
+// --- Renderer 属性设置 ---
+SDL_PropertiesID ren_props = SDL_CreateProperties();
+SDL_SetPointerProperty(ren_props, SDL_PROP_RENDERER_CREATE_WINDOW_POINTER, _window);
+SDL_SetNumberProperty(ren_props, SDL_PROP_RENDERER_CREATE_PRESENTVSYNC_NUMBER, 1); // 必须开启 VSync 防止撕裂
 
+_renderer = SDL_CreateRendererWithProperties(ren_props);
+SDL_DestroyProperties(ren_props);
+
+// --- 像素游戏特有设置 ---
+
+// 1. 关闭线条的平滑处理（确保线条也是硬朗的像素点）
+SDL_SetHint(SDL_HINT_RENDER_LINE_METHOD, "0"); 
+
+// 2. 逻辑分辨率：这是像素游戏的“降准”核心
+// 假设你的原始设计是 320x180 的低分辨率像素画
+// 设置逻辑显示，SDL会自动帮你等比例拉伸到窗口大小，且保持像素锐利
+SDL_SetRenderLogicalPresentation(_renderer, width, height, SDL_LOGICAL_PRESENTATION_INTEGER_SCALE);
+```
