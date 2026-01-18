@@ -151,3 +151,22 @@ SDL_SetHint(SDL_HINT_RENDER_LINE_METHOD, "0");
 // 设置逻辑显示，SDL会自动帮你等比例拉伸到窗口大小，且保持像素锐利
 SDL_SetRenderLogicalPresentation(_renderer, width, height, SDL_LOGICAL_PRESENTATION_INTEGER_SCALE);
 ```
+# C++ vector删除元素，erase-remove方法，效率高 
+```
+_children.erase(std::remove(_children.begin(), _children.end(), child), _children.end())
+
+std::remove(_children.begin(), _children.end(), child) // 将要删除的元素放到vector的末尾，并返回新的end迭代器
+_children.erase(_children.begin(), _children.end()) // 删除所有要删除的元素
+```
+# C++ 继承
+```
+class Object
+{
+protected:
+    Game &_game = Game::GetInstance();
+}
+class ObjectAffiliate : public Object
+class ObjectAffiliate : Object
+// 两种继承，第一个是正常继承，会调用Object的构造函数，第二个不会调用Object的构造函数
+// 并且，第一个可以访问Object的私有成员，第二个不可以访问Object的私有成员
+```
