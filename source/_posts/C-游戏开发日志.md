@@ -6,6 +6,37 @@ tags:
  -C++
 ---
 ## 参考视频 B站ZiyuGameDev
+## C++ 友元
+//我声明了一个友元类，那么这个类就可以访问这个类的私有属性，类似于这样
+```C++
+class Spell;
+class Collider : public ObjectAffiliate
+{
+protected:
+    // 友元
+    friend Spell;
+    enum class Shape
+    {
+        CIRCLE,
+        RECTANGLE
+    };
+    Shape _shape = Shape::CIRCLE;
+};
+
+Spell *Spell::addSpellChild(ObjectWorld *parent, const std::string &texture_path, glm::vec2 position, float scale, Anchor anchor)
+{
+    auto spell = new Spell();
+    spell->init();
+    spell->_anim = SpriteAnim::addSpriteAnimChild(spell, texture_path, anchor, scale);
+    auto size = spell->_anim->getSize();
+    //这里就可以访问私有的Shape
+    spell->_collider = Collider::addColliderChild(spell, size, Anchor::CENTER, Collider::Shape::CIRCLE);
+    spell->_anim->setIsLoop(false);
+    spell->setPosition(position);
+    if (parent) parent->addChild(spell);
+    return spell;
+}
+```
 ## 头文件减少依赖，能够增加编译速度
 ```
 // 向前声明，减少头文件以来，增加编译速度
@@ -101,7 +132,7 @@ C/C++: Reset IntelliSense Database
 ```
 
 ## C++单例模式
-```
+```C++
 //单例模式
 class Singleton {
 public:
@@ -123,7 +154,7 @@ Singleton& instance = Singleton::getInstance();
 instance.doSomething();
 ```
 ## 无法引入头文件
-```
+```C++
 // 添加可执行文件，查看cmake配置文件是不是没有配置
 add_executable(${TARGET} 
                 src/main.cpp
@@ -132,7 +163,7 @@ add_executable(${TARGET}
 ```
 
 # 像素游戏设置 Renderer 和 Window (Nearest Neighbor)
-```
+```C++
 // --- Renderer 属性设置 ---
 SDL_PropertiesID ren_props = SDL_CreateProperties();
 SDL_SetPointerProperty(ren_props, SDL_PROP_RENDERER_CREATE_WINDOW_POINTER, _window);
@@ -152,14 +183,14 @@ SDL_SetHint(SDL_HINT_RENDER_LINE_METHOD, "0");
 SDL_SetRenderLogicalPresentation(_renderer, width, height, SDL_LOGICAL_PRESENTATION_INTEGER_SCALE);
 ```
 # C++ vector删除元素，erase-remove方法，效率高 
-```
+```C++
 _children.erase(std::remove(_children.begin(), _children.end(), child), _children.end())
 
 std::remove(_children.begin(), _children.end(), child) // 将要删除的元素放到vector的末尾，并返回新的end迭代器
 _children.erase(_children.begin(), _children.end()) // 删除所有要删除的元素
 ```
 # C++ 继承
-```
+```C++
 class Object
 {
 protected:
@@ -169,4 +200,200 @@ class ObjectAffiliate : public Object
 class ObjectAffiliate : Object
 // 两种继承，第一个是正常继承，会调用Object的构造函数，第二个不会调用Object的构造函数
 // 并且，第一个可以访问Object的私有成员，第二个不可以访问Object的私有成员
+```
+
+# C++ 随机数
+```C++
+#include <random>
+
+// 随机数生成器
+std::mt19937 _random_generator = std::mt19937(std::random_device{}()); 
+
+// 生成一个[min, max)之间的随机浮点数
+float randomFloat(float min, float max) { return std::uniform_real_distribution<float>(min, max)(_random_generator)}; 
+// 生成一个[min, max)之间的随机整数
+float randowInt(int min, int max) { return std::uniform_int_distribution<int>(min, max)(_random_generator); } 
+// 生成一个[min, max)之间的随机二维向量
+glm::vec2 randomVec2(float min, float max) { return glm::vec2(randomFloat(min, max), randomFloat(min, max)); } 
+// 生成一个[min, max)之间的随机二维整数向量
+glm::ivec2 randomIvec2(int min, int max) { return glm::ivec2(randowInt(min, max), randowInt(min, max)); } 
+```
+
+# 资源管理器
+```C++
+#ifndef ASSET_STORE_H
+#define ASSET_STORE_H
+
+#include <string>
+#include <unordered_map> //无序map，性能比mao稍好
+#include <SDL3/SDL.h>
+#include <SDL3_mixer/SDL_mixer.h>
+#include <SDL3_image/SDL_image.h>
+#include <SDL3_ttf/SDL_ttf.h>
+
+class AssetStore
+{
+private:
+    SDL_Renderer *_renderer = nullptr; // 渲染器指针
+    MIX_Mixer *_mixer = nullptr; // 音效指针
+    std::unordered_map<std::string, SDL_Texture *> _textures;
+    std::unordered_map<std::string, MIX_Audio *> _sounds;
+    std::unordered_map<std::string, MIX_Audio *> _musics;
+    std::unordered_map<std::string, TTF_Font *> _fonts;
+
+    // 载入函数,返回地址
+    SDL_Texture *loadTexture(const std::string &path);
+    MIX_Audio *loadSound(const std::string &path);
+    MIX_Audio *loadMusic(const std::string &path);
+    TTF_Font *loadFont(const std::string &path, int size);
+
+public:
+    AssetStore(SDL_Renderer *renderer, MIX_Mixer *mixer) : _renderer(renderer), _mixer(mixer) {};
+    ~AssetStore() = default;
+
+    void clean(); // 清理函数
+    // 获取函数
+    SDL_Texture *getTexture(const std::string &name);
+    MIX_Audio *getSound(const std::string &name);
+    MIX_Audio *getMusic(const std::string &name);
+    TTF_Font *getFont(const std::string &name, int font_size);
+};
+
+#endif // ASSET_STORE_H
+
+#include "asset_store.h"
+
+void AssetStore::clean()
+{
+    for (auto &pair : _textures)
+    {
+        SDL_DestroyTexture(pair.second);
+    }
+    _textures.clear();
+
+    for (auto &pair : _sounds)
+    {
+        MIX_DestroyAudio(pair.second);
+    }
+    _sounds.clear();
+
+    for (auto &pair : _musics)
+    {
+        MIX_DestroyAudio(pair.second);
+    }
+    _musics.clear();
+
+    for (auto &pair : _fonts)
+    {
+        TTF_CloseFont(pair.second);
+    }
+    _fonts.clear();
+}
+
+SDL_Texture *AssetStore::loadTexture(const std::string &_file_path)
+{
+    SDL_Texture *texture = IMG_LoadTexture(_renderer, _file_path.c_str());
+    if (texture == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "加载图片失败: %s", SDL_GetError());
+        return nullptr;
+    }
+    //_textures[_file_path] = texture;
+    _textures.emplace(_file_path, texture);
+    return texture;
+}
+
+MIX_Audio *AssetStore::loadSound(const std::string &_file_path)
+{
+    MIX_Audio *sound = MIX_LoadAudio(_mixer, _file_path.c_str(), false);
+    if (sound == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "加载音频失败: %s", SDL_GetError());
+        return nullptr;
+    }
+    _sounds.emplace(_file_path, sound);
+    return sound;
+}
+
+MIX_Audio *AssetStore::loadMusic(const std::string &_file_path)
+{
+    MIX_Audio *music = MIX_LoadAudio(_mixer, _file_path.c_str(), false);
+    if (music == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "加载背景音乐失败: %s", SDL_GetError());
+        return nullptr;
+    }
+    _musics.emplace(_file_path, music);
+    return music;
+}
+
+TTF_Font *AssetStore::loadFont(const std::string &_file_path, int font_size)
+{
+    TTF_Font *font = TTF_OpenFont(_file_path.c_str(), font_size);
+    if (font == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "加载字体失败: %s", SDL_GetError());
+        return nullptr;
+    }
+    _fonts.emplace(_file_path + std::to_string(font_size), font);
+    return font;
+}
+
+
+
+SDL_Texture *AssetStore::getTexture(const std::string &file_path)
+{
+    // _textures找到name，返回it
+    auto it = _textures.find(file_path);
+    if (it == _textures.end())
+    {
+        return loadTexture(file_path);
+    }
+    else
+    {
+        return it->second;
+    }
+}
+
+MIX_Audio *AssetStore::getSound(const std::string &file_path)
+{
+    // _sounds找到name，返回it
+    auto it = _sounds.find(file_path);
+    if (it == _sounds.end())
+    {
+        return loadSound(file_path);
+    }
+    else
+    {
+        return it->second;
+    }
+}
+
+MIX_Audio *AssetStore::getMusic(const std::string &file_path)
+{
+    // _musics找到name，返回it
+    auto it = _musics.find(file_path);
+    if (it == _musics.end())
+    {
+        return loadMusic(file_path);
+    }
+    else
+    {
+        return it->second;
+    }
+}
+
+TTF_Font *AssetStore::getFont(const std::string &file_path, int font_size)
+{
+    // _fonts找到name，返回it
+    auto it = _fonts.find(file_path + std::to_string(font_size));
+    if (it == _fonts.end())
+    {
+        return loadFont(file_path, font_size);
+    }
+    else
+    {
+        return it->second;
+    } ff
+}
 ```

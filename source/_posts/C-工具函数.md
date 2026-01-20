@@ -49,6 +49,17 @@ void SceneEnd::removeLastUTF8Char(std::string &str)
 ```
 //按照int从大到小排序
 std::map<int, std::string, std::greater<int>> rank;
+```
+## 随机数
+```C++
+#include <random>
 
+// -- 随机数 -- 
+std::mt19937 _random_generator = std::mt19937(std::random_device{}()); // 随机数生成器
 
+// 随机数
+float randomFloat(float min, float max) { return std::uniform_real_distribution<float>(min, max)(_random_generator);}// 生成一个[min, max)之间的随机浮点数
+float randowInt(int min, int max) { return std::uniform_int_distribution<int>(min, max)(_random_generator); } // 生成一个[min, max)之间的随机整数
+glm::vec2 randomVec2(glm::vec2 min, glm::vec2 max) { return glm::vec2(randomFloat(min.x, max.x), randomFloat(min.y, max.y)); } // 生成一个[min, max)之间的随机二维浮点数向量
+glm::ivec2 randomIvec2(glm::ivec2 min, glm::ivec2 max) { return glm::ivec2(randowInt(min.x, max.x), randowInt(min.y, max.y)); } // 生成一个[min, max)之间的随机二维整数向量
 ```
